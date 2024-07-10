@@ -52,6 +52,4 @@ Course.init({
     updatedAt: 'updated_at'
 });
 
-console.log("modelname: " + Course.modelName);
-
 module.exports = Course;
