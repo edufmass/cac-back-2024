@@ -5,7 +5,8 @@
     "main": "src/app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node src/app.js",
+        "start": "nodemon --legacy-watch",
+        "start:railway": "node src/app.js",
         "db:migrate": "sequelize db:migrate",
         "db:migrate:production": "sequelize db:migrate --env production",
         "db:drop": "sequelize db:drop",
