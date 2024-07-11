@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require('cors');
 const apiRouter = require('./routes/index');
-const { env, port, host } = require('./config/configs');
+const { env, port, host, db } = require('./config/configs');
+
+console.log('app.js dbHost: ' + db.host + ' - dbPort: ' + db.port);
 
 const app = express();
 app.use(cors())
