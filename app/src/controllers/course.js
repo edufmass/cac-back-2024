@@ -23,7 +23,7 @@ CourseController.findAll = async (req, res) => {
 }
 CourseController.findOne = async (req, res) => {
   try {
-    const state = await new CourseService().findByPk(req.params.stateId)
+    const state = await new CourseService().findByPk(req.params.courseId)
     return res.status(OK).json(http.response(state, OK, 'Course found'))
   } catch (error) {
     console.error(error)
@@ -41,7 +41,7 @@ CourseController.create = async (req, res) => {
 }
 CourseController.update = async (req, res) => {
   try {
-    const state = await new CourseService().update(req.params.stateId, req.body)
+    const state = await new CourseService().update(req.params.courseId, req.body)
     return res.status(OK).json(http.response(state, OK, 'Course updated'))
   } catch (error) {
     console.error(error)
@@ -50,7 +50,7 @@ CourseController.update = async (req, res) => {
 }
 CourseController.remove = async (req, res) => {
   try {
-    const state = await new CourseService().remove(req.params.stateId)
+    const state = await new CourseService().remove(req.params.courseId)
     return res.status(NO_CONTENT).json(http.response(state, OK, 'Course deleted'))
   } catch (error) {
     console.error(error)

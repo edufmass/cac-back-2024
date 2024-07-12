@@ -54,8 +54,10 @@ class Service {
         ...data.dataValues,
         ...body
       }
-  
-      await this.model.update(id, payload)
+
+      data.set(payload)
+      await data.save()
+      //await this.model.update(id, payload)
   
       return payload
     }
@@ -67,7 +69,8 @@ class Service {
         throw new Error('Not found')
       }
   
-      await this.model.remove(id)
+      //await this.model.destroy()
+      await data.destroy()
   
       return null
     }

@@ -1,6 +1,8 @@
 require('dotenv').config()
 
 module.exports = {
+  apidom: process.env.API_DOMAIN || 'http://localhost',
+  apiurl: process.env.API_URL || 'api/v1',
   port: process.env.APP_PORT || 3000,
   host: process.env.APP_HOST || 'localhost',
   env: process.env.NODE_ENV || 'development',

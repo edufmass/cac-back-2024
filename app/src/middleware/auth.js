@@ -9,8 +9,16 @@ const AuthHelper = module.exports
 AuthHelper.checkAuth = (roles) => {
   return async (req, res, next) => {
     try {
+
+      if(!req.headers.authorization) {
+        return res.status(UNAUTHORIZED).json(http.response(null, UNAUTHORIZED, 'Unauthorized'))
+      }
+
       const token = req?.headers?.authorization.split(' ')[1]
       const data = tokenize.verify(token)
+
+      console.log('token: ' + token);
+      console.log('data: ' + data);
 
       if (!data) {
         return res.status(UNAUTHORIZED).json(http.response(null, UNAUTHORIZED, 'Unauthorized'))
@@ -18,7 +26,7 @@ AuthHelper.checkAuth = (roles) => {
 
       const user = await new UserService().findByPk(data?.sub?.id)
 
-      if (roles && !roles.includes(user?.role?.toUpperCase())) {
+      if ((roles.length > 0) && !roles.includes(user?.role?.toUpperCase())) {
         return res.status(UNAUTHORIZED).json(http.response(null, UNAUTHORIZED, 'Unauthorized'))
       }
 

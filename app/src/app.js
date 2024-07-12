@@ -1,11 +1,14 @@
 const express = require("express");
 const cors = require('cors');
 const apiRouter = require('./routes/index');
-const { env, port, host, db } = require('./config/configs');
+const { env, port, host, db, apiurl } = require('./config/configs');
+const swagger = require('./swagger');
 
 const app = express();
-app.use(cors())
-app.use (express.json())
+app.use(cors());
+app.use (express.json());
+
+swagger(app);
 
 // default
 app.get('/', (req, res) => (
@@ -13,7 +16,9 @@ app.get('/', (req, res) => (
 ));
 
 // Routes
-app.use('/api/v1', apiRouter)
+app.use(apiurl, apiRouter);
+
+
 
 app.listen(port, host, () => {
   console.log(`Example app listening on ${host} : ${port}!`);
