@@ -3,7 +3,9 @@ const swaggerUi = require('swagger-ui-express')
 const { host, port, apidom, apiurl } = require('./config/configs');
 const path = require('path');
 
+console.log('appPort: ' + port + ' - apiDom: ' + apidom + ' - apiUrl: ' + apiurl);
 const serverUrl = (port == '80') ? apidom + apiurl : apidom + ':' + port + apiurl;
+console.log('serverUrl: ' + serverUrl);
 
 const options = {
     swaggerDefinition: {
